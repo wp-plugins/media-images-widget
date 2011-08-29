@@ -3,7 +3,7 @@
 Plugin Name: Media Images Widget
 Plugin URI: http://floriantobias.de/web-stuff/media-images-widget/
 Description: You can select Images in your Media Gallery and this will be shown on your Widget-Position
-Version: 0.9
+Version: 0.9.1
 Author: Florian Tobias
 Author URI: http://floriantobias.de
 */
@@ -22,10 +22,11 @@ Author URI: http://floriantobias.de
 						'image/jpeg',
 						'image/png',
 						'image/gif'
-					)
+					) ,
+					'posts_per_page' => 1000
 				)
 			);
-			
+
 			$html_form = '<label style="line-height:25px;">
 				<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s" />
 				<input type="checkbox" name="%5$s[]" value="%6$s" %7$s/>
@@ -33,7 +34,6 @@ Author URI: http://floriantobias.de
 			$html_select = 'checked="checked"';
 
 			$html = '';
-
 			while($query->have_posts()) {
 				$query->the_post();
 				
