@@ -1,16 +1,18 @@
 === Plugin Name ===
 Contributors: Florian Tobias
-Tags: Widget, Image, photo, picture, pictures, photos
+Tags: Widget, Image, Media Library
 Requires at least: 3.0
 Tested up to: 3.2.1
 Stable Tag: 0.9
 
+Requieres PHP 5!
 You can select images from media Library in the Widgets backend that will be shown on your Page.
 
 == Description ==
 You can select images from media Library in the Widgets backend that will be shown on your Page. You can enter a size for the images.
 
 The thumb-images will be linked to the full-sized-image.
+Requieres PHP 5!
 
 == Installation ==
 
