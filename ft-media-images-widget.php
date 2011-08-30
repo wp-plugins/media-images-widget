@@ -3,7 +3,7 @@
 Plugin Name: Media Images Widget
 Plugin URI: http://floriantobias.de/web-stuff/media-images-widget/
 Description: You can select Images in your Media Gallery and this will be shown on your Widget-Position
-Version: 0.9.1
+Version: 0.9.2
 Author: Florian Tobias
 Author URI: http://floriantobias.de
 */
@@ -27,26 +27,43 @@ Author URI: http://floriantobias.de
 				)
 			);
 
-			$html_form = '<label style="line-height:25px;">
+			$html_form = '<td style="padding:10px 2px;"><label style="line-height:25px;">
 				<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s" />
 				<input type="checkbox" name="%5$s[]" value="%6$s" %7$s/>
-			</label>';
+			</label></td>';
+			$row_form = '<tr style="background-color:%s">%s</tr>';
 			$html_select = 'checked="checked"';
 
+			$html_td = '';
 			$html = '';
+			$i = 1;
+			$j = 1;
+
 			while($query->have_posts()) {
 				$query->the_post();
 				
 				$id = get_the_ID();
 				$select = '';
 
-				$thumb = wp_get_attachment_image_src($id, array(25,25));
+				$thumb = wp_get_attachment_image_src($id, array(30,30000));
 
 				if(is_array($instance['thumbs']) && in_array($id, $instance['thumbs'])) {
 					$select = $html_select;
 				}
+				
+                if(($i % 4) === 0) {
+					if(($j % 2) === 0) {
+                    	$color = '#eeeeee';
+					} else {
+						$color = 'white';
+					}
+					
+					$html .= sprintf($row_form, $color, $html_td);
+					$html_td = '';
+					$j++;
+				}
 
-				$html .= sprintf(
+				$html_td .= sprintf(
 					$html_form, 
 					$thumb[0], 
 					$thumb[1], 
@@ -56,6 +73,8 @@ Author URI: http://floriantobias.de
 					$id,
 					$select
 				);
+
+				$i++;
 			}
 			
 			$html_form = '<p>
@@ -70,7 +89,7 @@ Author URI: http://floriantobias.de
 				</label>
 			</p>
 			<p>
-				%s
+				<table>%s</table>
 			</p>';
 
 			printf(
