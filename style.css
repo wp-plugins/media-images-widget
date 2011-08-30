@@ -1,0 +1,27 @@
+.widget_ft_media_images_widget ul,
+.widget_ft_media_images_widget li,
+.widget_ft_media_images_widget a,
+.widget_ft_media_images_widget img {
+	border:none;
+	margin:0;
+	padding:0;
+}
+
+.widget_ft_media_images_widget ul:after {
+	content:".";
+	display:block;
+	visibility:hidden;
+	clear:both;
+	height:0;
+}
+.widget_ft_media_images_widget li,
+.widget_ft_media_images_widget a {
+	float:left;
+}
+
+.widget_ft_media_images_widget li {
+	padding:2px;
+	border:1px solid silver;
+	margin-right:3px;
+	margin-bottom:3px;
+}
