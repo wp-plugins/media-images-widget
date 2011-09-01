@@ -3,7 +3,7 @@ Contributors: Florian Tobias
 Tags: Widget, Image, Media Library
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable Tag: 0.9.2
+Stable Tag: 0.9.3
 
 Requieres PHP 5!
 You can select images from media Library in the Widgets backend that will be shown on your Page.
@@ -29,9 +29,11 @@ Requieres PHP 5!
 
 
 == Changelog ==
+= 0.9.3 = 
+* If there no images selected, the Widget will not produce errors on frontpage 
 = 0.9.2 =
-Changed Backend-Thumbnail-Formatting
+* Changed Backend-Thumbnail-Formatting
 = 0.9.1 = 
-There was a Bug with the "posts_per_page"-Option. The Plugin will now shown at least 1000 images
+* There was a Bug with the "posts_per_page"-Option. The Plugin will now shown at least 1000 images
 = 0.9 =
 * Added Image-Size

@@ -3,7 +3,7 @@
 Plugin Name: Media Images Widget
 Plugin URI: http://floriantobias.de/web-stuff/media-images-widget/
 Description: You can select Images in your Media Gallery and this will be shown on your Widget-Position
-Version: 0.9.2
+Version: 0.9.3
 Author: Florian Tobias
 Author URI: http://floriantobias.de
 */
@@ -134,25 +134,27 @@ Author URI: http://floriantobias.de
 				$height = 10000;
 			}
 
-			foreach($instance['thumbs'] as $id) {
-				$thumb_image = wp_get_attachment_image($id, array($width, $height));
-				$big_image = wp_get_attachment_image_src($id, 'full');
-				
-				$html .= sprintf(
-					$html_form, 
-					$big_image[0], 
-					$thumb_image
-				);
+			if(is_array($instance['thumbs'])) {
+				foreach($instance['thumbs'] as $id) {
+					$thumb_image = wp_get_attachment_image($id, array($width, $height));
+					$big_image = wp_get_attachment_image_src($id, 'full');
+					
+					$html .= sprintf(
+						$html_form, 
+						$big_image[0], 
+						$thumb_image
+					);
+	
+				}
 
+				$title = apply_filters('widget_title', $instance['title']);
+				if(!empty($title)) {
+					$title = $before_title.$title.$after_title;
+				}
+	
+				// Output the Widget
+				printf('%s%s<ul>%s</ul>%s', $before_widget, $title, $html, $after_widget);
 			}
-			
-			$title = apply_filters('widget_title', $instance['title']);
-			if(!empty($title)) {
-				$title = $before_title.$title.$after_title;
-			}
-
-			// Output the Widget
-			printf('%s%s<ul>%s</ul>%s', $before_widget, $title, $html, $after_widget);
 		}
 
 		public function register() {
